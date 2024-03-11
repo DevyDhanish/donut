@@ -1,0 +1,12 @@
+.root-div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-bar
+{
+    background-color: aqua;
+}
