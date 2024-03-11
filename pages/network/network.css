@@ -13,3 +13,36 @@
     align-items: center;
     text-align: center;
 }
+
+.network-view-info
+{
+    margin: 50px;
+    width: 600px;
+    height: wrap;
+}
+
+#networkscan-view-info
+{
+    background-color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    overflow-y: auto; /* Use 'auto' to only show scrollbar when needed */
+    max-height: 600px; /* Adjust the maximum height as needed */
+    width: 750px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the element horizontally */
+}
+
+#network-info-block
+{
+    width: 90%;
+    /*background-color: aqua;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
+}
