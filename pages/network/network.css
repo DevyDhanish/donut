@@ -1,10 +1,10 @@
-#about-view-info-icon
+#network-view-info-icon
 {
     width: 100px;
     height: 100px;
 }
 
-.about-view-info
+.network-view-heading
 {
     width: 100%;
     display: flex;
@@ -13,4 +13,3 @@
     align-items: center;
     text-align: center;
 }
-

@@ -18,6 +18,7 @@ function createWindow()
     })
 
     mainWindow.loadFile(path.join(__dirname, "\\pages\\main\\index.html"));
+    handlePage(mainWindow, "/pages/general/general.html");
 }
 
 ipcMain.on("loadPage", (event, page) => {
