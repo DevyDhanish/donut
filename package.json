@@ -4,7 +4,7 @@
   "description": "network managment and control",
   "main": "main.js",
   "scripts": {
-    "test": "electron ."
+    "seeApp": "electron ."
   },
   "author": "",
   "license": "ISC",
