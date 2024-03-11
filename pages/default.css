@@ -1,12 +1,22 @@
+:root {
+    --app_background_color : #282828;
+    --border_color : #ff0000;
+}
+
 body{
     margin: 0px;
     padding: 0px 0px 0px 0px;
-}
-
-:root {
-    --app_background_color : #282828;
-}
-
-body{
     background-color: var(--app_background_color);
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
 }
+
+/* #side-bar-icon-border
+{
+    width: 100px;
+    height: 100px;
+    color: rebeccapurple;
+    border: 2px var(--border_color);
+    border-radius: 50px;
+} */
