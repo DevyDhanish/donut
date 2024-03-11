@@ -1,0 +1,14 @@
+{
+  "name": "donut",
+  "version": "1.0.0",
+  "description": "network managment and control",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^29.1.1"
+  }
+}
