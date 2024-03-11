@@ -25,6 +25,17 @@ function handleLayoutButton()
     ruleButton.addEventListener("click", () => {
         window.donut.loadPage("pages/rules/rule.html");
     });
+
+
+
+
+
+
+
+
+
+
+    
 }
 
 handleLayoutButton();

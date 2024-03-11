@@ -1,4 +1,3 @@
-const {BrowserWindow} = require("electron");
 const path = require("path");
 
 function handlePage(window, page)

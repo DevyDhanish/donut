@@ -1,9 +1,3 @@
-#rules-view-info-icon
-{
-    width: 100px;
-    height: 100px;
-}
-
 .rules-view-heading
 {
     width: 100%;
@@ -14,3 +8,25 @@
     text-align: center;
 }
 
+.rules-view-info
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#rule-view-block
+{
+    height: wrap;
+    margin: 10px;
+}
+
+.rule-block
+{
+    padding: 20px;
+    width: wrap;
+    height: wrap;
+    background-color: rgb(31, 31, 31);
+}
