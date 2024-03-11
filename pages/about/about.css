@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #202020;
+}
+.img{
+    margin-top: 5%;
+    display: grid;
+    place-items: center;
+}
+.rotate{
+    animation: rotation 8s infinite linear;
+    width: 300px;
+    display: grid;
+    justify-content: center;
+    margin: auto;
+}
+@keyframes rotation{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}
+.heading{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-style: normal ;
+    text-decoration: underline;
+}
+.paragraph{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+.creators{
+    color: white;
+}
