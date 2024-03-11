@@ -1,1 +1,1 @@
-{"rules":[["if","Speed","40","then","disConn","python main.py"],["if","Speed","30","then","Conn",""],["if","connType","5g","then","exec",""],["if","connType","5g","then","Conn",""]]}
+{"rules":[["if","connType","4g","then","notify","hello"],["if","connType","5g","then","notify","hi ommm"]]}

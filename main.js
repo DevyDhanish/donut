@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron")
 const path = require("path");
 const handlePage  = require("./pageHandler.js");
 const networkHandler = require("./networkHandler.js");
+const nodeNotifier = require("node-notifier");
 
 let mainWindow = null;
 let CONNTYPE = "5g";
@@ -154,6 +155,81 @@ function check5gProb() {
     });
 }
 
+function execNotif(text)
+{
+    nodeNotifier.notify({
+        title : "Notify",
+        message : text,
+        sound : true,
+    }, (err, res, meta) => {});
+}
+
+function execRule(rules)
+{
+    let counter = 0;
+
+    if(rules[counter] != "if")
+    {
+        console.log("Invalid Rule");
+    }
+
+    counter++;
+
+    if(rules[counter] == "connType")
+    {
+        counter++;
+
+        if(rules[counter] == "5g" && CONNTYPE == "5g")
+        {
+            counter++; counter++; // skip the then
+
+            if(rules[counter] == "notify")
+            {
+                counter++;
+                execNotif(rules[counter]);
+            }
+        }
+
+        if(rules[counter] == "4g" && CONNTYPE == "4g")
+        {
+            counter++; counter++; // skip the then
+
+            if(rules[counter] == "notify")
+            {
+                counter++;
+                execNotif(rules[counter]);
+            }
+        }
+    }
+}
+
+function executeRules()
+{
+    let rules = 0;
+    fs.readFile('rules.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return;
+        }
+
+        try {
+            const jsonData = JSON.parse(data);
+
+            // calculate the prog
+
+            rules = jsonData["rules"];
+
+            for(let i = 0; i < rules.length; i++)
+            {
+                execRule(rules[i]);
+            }
+
+        } catch (parseErr) {
+            console.error('Error parsing JSON:', parseErr);
+        }
+    });
+}
+
 setInterval(() => {
     writeDataToFile();
 }, 30000); // Run every 10000 milliseconds (1 second)
@@ -162,6 +238,15 @@ setInterval(() => {
     check5gProb();
 }, 10000);
 
+setInterval(() => {
+    executeRules();
+}, 1000);
+
 app.whenReady().then(() => {
     createWindow();
+})
+
+
+ipcMain.on("executeRules", (event, data) => {
+    console.log(data);
 })

@@ -22,7 +22,7 @@ const ruleSet = [
         "select" : ["select", "then"],
     },
     {
-        "select" : ["select", "exec", "disConn", "Conn"],
+        "select" : ["select", "exec", "disConn", "Conn", "notify"],
     },
     {
         "select" : [ "done" ],
@@ -158,5 +158,3 @@ window.donut.getFileData((data) => {
         ruleCount++;
     }
 })
-
-console.log(ruleHolder);

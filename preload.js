@@ -10,6 +10,8 @@ contextBridge.exposeInMainWorld("donut", {
 
     networkConnect : (_ssid, _password) => ipcRenderer.send("networkConnect", _ssid, _password),
 
+    executeRules : (rulesArray) => ipcRenderer.send("executeRules", rulesArray),
+
     getFileData : (callback) => {
         ipcRenderer.on("loadFileResponse", (event, data) => {
             callback(data);
