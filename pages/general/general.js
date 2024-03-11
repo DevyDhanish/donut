@@ -30,12 +30,12 @@ window.donut.reveiveNetInfo((data) => {
     let signalStrength = document.createElement("h3");
     signalStrength.innerHTML = "signal strength : " + data[0]["signal_level"];
 
+    blockToAddInto.appendChild(ssid);
     blockToAddInto.appendChild(bssid);
     blockToAddInto.appendChild(iname);
     blockToAddInto.appendChild(channel);
     blockToAddInto.appendChild(freq);
     blockToAddInto.appendChild(freq);
-    blockToAddInto.appendChild(ssid);
     blockToAddInto.appendChild(security);
     blockToAddInto.append(signalStrength);
 });

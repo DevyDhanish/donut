@@ -170,3 +170,13 @@ select {
     margin: 10px;
     padding: 4px;
 }
+
+input
+{
+    border: none;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #1f1f1f;
+    color: #ccc;
+}

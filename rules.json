@@ -1,0 +1,6 @@
+{
+    "rules" :[
+        ["if","connType","5g","then","exec","sdfasdf"],
+        ["if","connType","5g","then","disConn","python main.py"]
+    ]
+}

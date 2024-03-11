@@ -2,6 +2,8 @@ const ruleBlockHolder = document.getElementById("rule-view-block");
 const ruleAddRuleBtn = document.getElementById("rule-add-button");
 let ruleCount = 0;
 let ruleSelectCount = 0;
+let ruleHolder = [];
+let ruleBuffer = [];
 
 const ruleSet = [
     {
@@ -20,7 +22,7 @@ const ruleSet = [
         "select" : ["select", "then"],
     },
     {
-        "select" : ["select", "exec"],
+        "select" : ["select", "exec", "disConn", "Conn"],
     },
     {
         "select" : [ "done" ],
@@ -47,9 +49,15 @@ function createRuleBlock(blockToAttachTo, _ruleSet)
 {
     if(ruleSelectCount >= ruleSet.length - 1)
     {
+        var args = document.getElementById("args" + (ruleCount - 1));
+        ruleBuffer.push(args.value);
+        ruleHolder.push(ruleBuffer);
+        ruleBuffer = [];
+        console.log(ruleHolder);
+
         const ruleCreated = new Event("ruleCreated", () => {})
         document.dispatchEvent(ruleCreated);
-
+        
         return;
     }
 
@@ -59,7 +67,7 @@ function createRuleBlock(blockToAttachTo, _ruleSet)
     ruleSelect.addEventListener("change", (event) => {
 
         ruleSelectCount++;
-        
+        ruleBuffer.push(event.target.value);
         if(ruleSet[ruleSelectCount][event.target.value])
         {
             createRuleBlock(blockToAttachTo, ruleSet[ruleSelectCount][event.target.value]);
@@ -77,10 +85,15 @@ ruleAddRuleBtn.addEventListener("click", () => {
     // create new div add all the drop down to the div
     var ruleBlockDiv = document.createElement("div");
     var ruleBlockId = document.createElement("p");
+    var inputBlock = document.createElement("input");
+    inputBlock.type = "text";
+    inputBlock.id = "args" + ruleCount;
+    inputBlock.placeholder = "Enter cmd if any";
 
     ruleBlockId.innerHTML = ruleCount;
     ruleBlockDiv.className = "rule-block";
     ruleBlockDiv.appendChild(ruleBlockId);
+    ruleBlockDiv.appendChild(inputBlock);
 
     createRuleBlock(ruleBlockDiv, ruleSet[0]["select"]);
 
@@ -93,4 +106,12 @@ ruleAddRuleBtn.addEventListener("click", () => {
 
 document.addEventListener("ruleCreated", () => {
     console.log("rule created");
+
+    var data = {
+        "rules" : []
+    }
+
+    data["rules"] = ruleHolder;
+
+    window.donut.writeToFile("./rules.json", data);
 })

@@ -1,5 +1,11 @@
 let networksInfo = window.donut.getNetworksInfo();
 const networkInfoBlock = document.getElementById("networkscan-view-info");
+const selectBlock = document.getElementById("networks-select");
+const connectButton = document.getElementById("connect-button");
+const passwordFeild = document.getElementById("password");
+
+let password = "";
+let network_ssid = "";
 
 function createInfoBlock(ssid, strength, freq)
 {
@@ -27,6 +33,26 @@ window.donut.reveiveNetsInfo((data) => {
     
     for(let i = 0; i < data.length; i++)
     {
+        let optionBlock = document.createElement("option");
+        optionBlock.value = data[i]["ssid"];
+        optionBlock.innerHTML = data[i]["ssid"];
         networkInfoBlock.appendChild((createInfoBlock(data[i]["ssid"], data[i]["quality"], data[i]["frequency"])));
+        selectBlock.appendChild(optionBlock);
+    }
+})
+
+selectBlock.addEventListener("change", (event) => {
+    network_ssid = event.target.value;
+})
+
+connectButton.addEventListener("click", () => {
+    password = passwordFeild.value;
+
+    if(password != "" && network_ssid != "")
+    {
+        window.donut.networkConnect(network_ssid, password);
+    }
+    else{
+        console.log("lajsdf");
     }
 })

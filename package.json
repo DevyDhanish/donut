@@ -11,6 +11,7 @@
   "dependencies": {
     "electron": "^29.1.1",
     "fast-speedtest-api": "^0.3.2",
+    "node-notifier": "^10.0.1",
     "node-wifi": "^2.0.16",
     "node-wifi-2.0": "^3.4.0"
   }
