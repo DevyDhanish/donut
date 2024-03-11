@@ -10,3 +10,82 @@ body{
 body{
     background-color: var(--app_background_color);
 }
+
+button{
+    background: hsl(340deg 100% 32%);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    margin:30px;
+    width:wrap;
+    min-width: 30px;
+    translate: 4px;
+}
+
+button:active #general_button_span{
+    transform: translateY(-2px);
+
+}
+
+button:active #network_button_span{
+    transform: translateY(-2px);
+
+}
+button:active #rule_button_span{
+    transform: translateY(-2px);
+
+}
+button:active #about_button_span{
+    transform: translateY(-2px);
+
+}
+button:active #debug_button_span{
+    transform: translateY(-2px);
+}
+#general_button_span{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
+#network_button_span{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
+#rule_button_span{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
+#about_button_span{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
+#debug_button_span{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
