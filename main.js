@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron")
 const path = require("path");
-const { handlePage } = require("./pageHandler");
+const handlePage  = require("./pageHandler.js");
 
 let mainWindow = null;
 
@@ -20,8 +20,8 @@ function createWindow()
     mainWindow.loadFile(path.join(__dirname, "\\pages\\main\\index.html"));
 }
 
-ipcMain.on("loadPage", (page) => {
-    handlePage(window, page);
+ipcMain.on("loadPage", (event, page) => {
+    handlePage(mainWindow, page);
 })
 
 app.whenReady().then(() => {
