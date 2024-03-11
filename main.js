@@ -4,6 +4,7 @@ const handlePage  = require("./pageHandler.js");
 const networkHandler = require("./networkHandler.js");
 const nodeNotifier = require("node-notifier");
 
+let notiFyLimit = 0;
 let mainWindow = null;
 let CONNTYPE = "5g";
 var channel = 0;
@@ -164,6 +165,21 @@ function execNotif(text)
     }, (err, res, meta) => {});
 }
 
+function execExec(args)
+{
+
+}
+
+function execDisConn(ssid)
+{
+    networkHandler.disconnectNetwork();
+}
+
+function execConn(ssid, password)
+{
+
+}
+
 function execRule(rules)
 {
     let counter = 0;
@@ -188,6 +204,11 @@ function execRule(rules)
                 counter++;
                 execNotif(rules[counter]);
             }
+
+            if(rules[counter] == "disConn")
+            {
+                execDisConn();
+            }
         }
 
         if(rules[counter] == "4g" && CONNTYPE == "4g")
@@ -198,6 +219,11 @@ function execRule(rules)
             {
                 counter++;
                 execNotif(rules[counter]);
+            }
+
+            if(rules[counter] == "disConn")
+            {
+                execDisConn();
             }
         }
     }
@@ -240,12 +266,11 @@ setInterval(() => {
 
 setInterval(() => {
     executeRules();
-}, 1000);
+}, 30000);
 
 app.whenReady().then(() => {
     createWindow();
 })
-
 
 ipcMain.on("executeRules", (event, data) => {
     console.log(data);

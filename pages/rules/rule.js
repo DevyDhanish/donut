@@ -11,7 +11,7 @@ const ruleSet = [
     },
     {
         "select" : ["select"],
-        "if" : [ "select", "connType", "Speed" ]
+        "if" : [ "select", "connType", ]
     },
     {
         "select" : ["select"],

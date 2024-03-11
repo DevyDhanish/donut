@@ -41,6 +41,17 @@ function initNetwork()
     });
 }
 
+function disconnectNetwork()
+{
+    nodeWifi.disconnect(error => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Disconnected');
+        }
+    });
+}
+
 function connectNetwork(_ssid, _password)
 {
     nodeWifi.connect({ ssid: _ssid , password: _password }, () => {
@@ -54,6 +65,7 @@ function connectNetwork(_ssid, _password)
 
 async function getCurrentNetworkTechnology()
 {
+    
 }
 
 module.exports = {
@@ -61,5 +73,6 @@ module.exports = {
     getNetworks: getNetworks,
     initNetwork: initNetwork,
     connectNetwork: connectNetwork,
+    disconnectNetwork: disconnectNetwork,
     getCurrentNetworkTechnology : getCurrentNetworkTechnology,
 };
