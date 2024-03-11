@@ -11,7 +11,7 @@ function createWindow()
         autoHideMenuBar : true,
     })
 
-    mainWindow.loadFile(path.join(__dirname, "\\pages\\general\\general.html"));
+    mainWindow.loadFile(path.join(__dirname, "\\pages\\main\\index.html"));
 }
 
 app.whenReady().then(() => {
