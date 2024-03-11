@@ -1,28 +1,28 @@
-const general_button = document.getElementById("general-button");
-const network_button = document.getElementById("network-button");
-const rule_button = document.getElementById("rule-button");
-const about_button = document.getElementById("about-button");
-const debug_button = document.getElementById("debug-button");
+const generalButton = document.getElementById("general-button");
+const networkButton = document.getElementById("network-button");
+const ruleButton = document.getElementById("rule-button");
+const aboutButton = document.getElementById("about-button");
+const debugButton = document.getElementById("debug-button");
 
 function handleLayoutButton()
 {
-    about_button.addEventListener("click", () => {
+    aboutButton.addEventListener("click", () => {
         window.donut.loadPage("pages/about/about.html");
     });
 
-    general_button.addEventListener("click", () => {
+    generalButton.addEventListener("click", () => {
         window.donut.loadPage("pages/general/general.html");
     });
 
-    network_button.addEventListener("click", () => {
+    networkButton.addEventListener("click", () => {
         window.donut.loadPage("pages/network/network.html");
     });
 
-    debug_button.addEventListener("click", () => {
+    debugButton.addEventListener("click", () => {
         window.donut.loadPage("pages/debug/debug.html");
     });
 
-    rule_button.addEventListener("click", () => {
+    ruleButton.addEventListener("click", () => {
         window.donut.loadPage("pages/rules/rule.html");
     });
 }
