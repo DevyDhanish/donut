@@ -118,7 +118,7 @@ button:active #debug_button_span{
 
 .main-view
 {
-    width: 100%;
+    width: 100px;
     height: 100vh;
     /* background-color: red; */
     display: flex;
