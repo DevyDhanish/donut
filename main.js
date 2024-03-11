@@ -2,9 +2,12 @@ const { app, BrowserWindow, ipcMain } = require("electron")
 const path = require("path");
 const handlePage  = require("./pageHandler.js");
 const networkHandler = require("./networkHandler.js");
-const fs = require("fs");
 
 let mainWindow = null;
+let CONNTYPE = "5g";
+var channel = 0;
+var freq = 0;
+var netSpeed = 0;
 
 function createWindow()
 {
@@ -45,7 +48,7 @@ ipcMain.on("loadFromFile", (event, filePath) => {
     fs.readFile(filePath, (err, data) => {
         if (err) {
             console.error("Error reading file:", err);
-            event.reply('loadFileResponse', { success: false, error: err.message });
+            event.reply("loadFileResponse", { success: false, error: err.message });
         } else {
             try {
                 const jsonData = JSON.parse(data);
@@ -81,6 +84,83 @@ ipcMain.on("getNetworksInfo", (event) => {
         console.log("failed");
     });
 })
+
+const fs = require('fs');
+const FastSpeedtest = require('fast-speedtest-api');
+
+async function writeDataToFile() {
+    console.log("checking");
+    try {
+        let currentNetworkStats = await networkHandler.getNetwork();
+        
+        channel = currentNetworkStats[0].channel;
+        freq = currentNetworkStats[0].frequency;
+        netSpeed = 0;
+
+        let speedtest = new FastSpeedtest({
+            token: "YXNkZmFzZGxmbnNkYWZoYXNkZmhrYWxm", 
+            verbose: false, 
+            timeout: 10000,
+            https: true, 
+            urlCount: 5, 
+            bufferSize: 8, 
+            unit: FastSpeedtest.UNITS.Mbps 
+        });
+
+        netSpeed = await speedtest.getSpeed();
+
+        var dataToWrite = {
+            "modelInput" : [freq, channel, netSpeed],
+            "modelOutput" : [[]]
+        }
+
+        console.log(dataToWrite);
+
+        const jsonData = JSON.stringify(dataToWrite);
+
+        fs.writeFile("modeloutput.json", jsonData, (err) => {
+            if (err) {
+                // Handle error
+                console.error("Error writing to file:", err);
+            } else {
+                console.log('Data written to file successfully.');
+            }
+        });
+ 
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function check5gProb() {
+    fs.readFile('modeloutput.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading file:', err);
+            return;
+        }
+
+        try {
+            const jsonData = JSON.parse(data);
+
+            let prog = jsonData["modelOutput"][0][0];
+
+            // calculate the prog
+
+            console.log(prog);
+
+        } catch (parseErr) {
+            console.error('Error parsing JSON:', parseErr);
+        }
+    });
+}
+
+setInterval(() => {
+    writeDataToFile();
+}, 30000); // Run every 10000 milliseconds (1 second)
+
+setInterval(() => {
+    check5gProb();
+}, 10000);
 
 app.whenReady().then(() => {
     createWindow();

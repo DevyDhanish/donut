@@ -6,7 +6,7 @@ contextBridge.exposeInMainWorld("donut", {
     getNetworksInfo : () => ipcRenderer.send("getNetworksInfo"),
 
     writeToFile : (filepath, data) => ipcRenderer.send("writeToFile", filepath, data),
-    writeFromFile : (data) => ipcRenderer.send("loadFromFile", data),
+    loadFromFile : (filePath) => ipcRenderer.send("loadFromFile", filePath),
 
     networkConnect : (_ssid, _password) => ipcRenderer.send("networkConnect", _ssid, _password),
 

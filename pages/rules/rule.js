@@ -88,7 +88,7 @@ ruleAddRuleBtn.addEventListener("click", () => {
     var inputBlock = document.createElement("input");
     inputBlock.type = "text";
     inputBlock.id = "args" + ruleCount;
-    inputBlock.placeholder = "Enter cmd if any";
+    inputBlock.placeholder = "Cmd here if any rule ends with exec";
 
     ruleBlockId.innerHTML = ruleCount;
     ruleBlockDiv.className = "rule-block";
@@ -115,3 +115,48 @@ document.addEventListener("ruleCreated", () => {
 
     window.donut.writeToFile("./rules.json", data);
 })
+
+window.donut.loadFromFile("./rules.json");
+
+window.donut.getFileData((data) => {
+    var ruleData = data["rules"];
+    ruleHolder = ruleData;
+
+    for(let i = 0; i < ruleData.length; i++)
+    {
+        ruleSelectCount = 0;
+        // create new div add all the drop down to the div
+        var ruleBlockDiv = document.createElement("div");
+        var ruleBlockId = document.createElement("p");
+        var inputBlock = document.createElement("input");
+        inputBlock.type = "text";
+        inputBlock.id = "args" + ruleCount;
+        inputBlock.placeholder = "Cmd here if any rule ends with exec";
+    
+        ruleBlockId.innerHTML = ruleCount;
+        ruleBlockDiv.className = "rule-block";
+        ruleBlockDiv.appendChild(ruleBlockId);
+        ruleBlockDiv.appendChild(inputBlock);
+
+
+        for(let j = 0; j < ruleData[i].length; j++)
+        {
+            var selectItem = document.createElement("select");
+            var option = document.createElement("option")
+            option.selected = true;
+
+            option.value = ruleData[i][j];
+            option.innerHTML = ruleData[i][j];
+
+            selectItem.appendChild(option);
+
+            ruleBlockDiv.appendChild(selectItem);
+        }
+    
+        ruleBlockHolder.appendChild(ruleBlockDiv);
+    
+        ruleCount++;
+    }
+})
+
+console.log(ruleHolder);

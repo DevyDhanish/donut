@@ -26,6 +26,7 @@
 .rule-block
 {
     padding: 20px;
+    min-width: none;
     width: wrap;
     height: wrap;
     background-color: rgb(31, 31, 31);

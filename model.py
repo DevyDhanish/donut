@@ -35,15 +35,25 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 
 model.fit(X, y, epochs=100)
 
-predictions = model.predict([[5342, 133, 400]])
+import time
 
-outputFile = open("modelres.json", "w")
+while True:
+    with open("modeloutput.json", "r") as f:
+        data = json.load(f)["modelInput"]
 
-with open("modelinput.js") as f:
-    data = json.load(f)
-    
     if data != []:
         predictions = model.predict([data])
-        
-        with open("modelres.json", "w") as output_file:
-            json.dump(predictions.tolist(), output_file)
+
+        DATA = {
+            "modelInput": [],
+            "modelOutput": predictions.tolist()
+        }
+
+        with open("modeloutput.json", "w") as out_file:
+            json.dump(DATA, out_file)
+
+
+    time.sleep(10)
+
+
+    

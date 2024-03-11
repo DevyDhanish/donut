@@ -54,43 +54,6 @@ function connectNetwork(_ssid, _password)
 
 async function getCurrentNetworkTechnology()
 {
-    try {
-        let currentNetworkStats = await getNetwork();
-        
-        var channel = currentNetworkStats[0].channel;
-        var freq = currentNetworkStats[0].frequency;
-        var netSpeed = 0;
-
-        // if(channel >= 36 && freq >= 5000)
-        // {
-        //     let speedtest = new FastSpeedtest({
-        //         token: "YXNkZmFzZGxmbnNkYWZoYXNkZmhrYWxm", 
-        //         verbose: false, 
-        //         timeout: 10000,
-        //         https: true, 
-        //         urlCount: 5, 
-        //         bufferSize: 8, 
-        //         unit: FastSpeedtest.UNITS.Mbps 
-        //     });
-
-        //     speedtest.getSpeed().then(speed => {
-        //         console.log(speed);
-        //         netSpeed = speed;
-
-        //         if(netSpeed > 80)
-        //         {
-        //             console.log(currentNetworkStats[0].ssid + "is 5g");
-        //         }
-        //         else
-        //         {
-        //             console.log(currentNetworkStats[0].ssid + "is 4g or 4g lte");
-        //         }
-        //     });
-        //}
-
-    } catch (error) {
-        console.error(error);
-    }
 }
 
 module.exports = {
