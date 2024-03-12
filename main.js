@@ -146,14 +146,34 @@ function check5gProb() {
 
             let prog = jsonData["modelOutput"][0][0];
 
-            if((freq > 5000 || channel > 20 || netSpeed > 60))
+            console.log(freq, channel, netSpeed);
+
+            if(freq > 5000 && channel > 30)
             {
-                console.log("5g");
+                if(netSpeed <= 90)
+                {
+                    CONNTYPE = "4g";
+                }
+
+                else
+                {
+                    CONNTYPE = "5g";
+                }
             }
             else
             {
-                console.log("4g");
+                if(netSpeed <= 90)
+                {
+                    CONNTYPE = "4g";
+                }
+
+                else
+                {
+                    CONNTYPE = "5g";
+                }
             }
+
+            console.log(CONNTYPE);
 
         } catch (parseErr) {
             console.error('Error parsing JSON:', parseErr);
@@ -271,7 +291,7 @@ setInterval(() => {
 
 setInterval(() => {
     executeRules();
-}, 30000);
+}, 40000);
 
 app.whenReady().then(() => {
     createWindow();
