@@ -46,11 +46,38 @@ selectBlock.addEventListener("change", (event) => {
 })
 
 connectButton.addEventListener("click", () => {
+    let creadArr = [];
+
+    var cred = {
+        "ssid": network_ssid,
+        "pass": password,
+    }
+
     password = passwordFeild.value;
+
+    window.donut.loadFromFile("./password.json");
+
+    window.donut.getFileData((data) => {
+
+        creadArr = data;
+
+        for(let i = 0; i < data.length; i++)
+        {
+            if(data[i]["ssid"] == network_ssid)
+            {
+                password = data[i]["password"];
+            }
+        }
+    })
+
 
     if(password != "" && network_ssid != "")
     {
         window.donut.networkConnect(network_ssid, password);
+
+        creadArr.push(cred);
+        window.donut.writeToFile("./password.json", cred);
+
     }
     else{
         console.log("lajsdf");

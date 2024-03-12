@@ -146,9 +146,14 @@ function check5gProb() {
 
             let prog = jsonData["modelOutput"][0][0];
 
-            // calculate the prog
-
-            console.log(prog);
+            if((freq > 5000 || channel > 20 || netSpeed > 60))
+            {
+                console.log("5g");
+            }
+            else
+            {
+                console.log("4g");
+            }
 
         } catch (parseErr) {
             console.error('Error parsing JSON:', parseErr);
